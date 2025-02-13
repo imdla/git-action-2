@@ -29,11 +29,6 @@ services:
       # Dockerfile 경로
       context: ./api
       dockerfile: Dockerfile
-      cache_from:
-        - type=local,src=/tmp/.buildx-cache/backend
-      # 캐시 저장할 폴더
-      cache_to:
-        - type=local,dest=/tmp/.buildx-cache/backend,mode=max
     image: imdla/api-image:latest
     ports:
       - '8080:8080'
@@ -52,10 +47,6 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-      cache_from:
-        - type=local,src=/tmp/.buildx-cache/frontend
-      cache_to:
-        - type=local,dest=/tmp/.buildx-cache/frontend,mode=max
     image: imdla/client:latest
     ports:
       - '80:80'
