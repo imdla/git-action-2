@@ -18,6 +18,7 @@ jobs:
         # acrions/cache : 깃허브 캐시 저장소 활용을 위한 라이브러리
         uses: actions/cache@v4.2.0
         with:
+          # 캐시로 관리할 경로
           path: /tmp/.buildx-cache
           key: docker-image-layer-cache-${{ github.sha }}
           restore-keys: docker-image-layer-cache
@@ -56,7 +57,6 @@ jobs:
       - name: Create BuildKit Builder
         run: |
           docker buildx create --use --name buildkit-builder
-          docker buildx use buildkit-builder
 
       - name: Docker Image Build
         run: docker compose -f docker-compose.yml build
