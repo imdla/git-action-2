@@ -59,7 +59,7 @@ jobs:
           docker buildx create --use --name buildkit-builder
 
       - name: Docker Image Build
-        run: docker compose -f docker-compose.yml build
+        run: docker compose -f docker-compose.yml build --build-arg BUILDKIT_INLINE_CACHE=1
 
       - name: Docker Image Push
         run: docker compose -f docker-compose.yml push
@@ -86,3 +86,4 @@ jobs:
             docker compose -f docker-compose.yml pull
             docker compose -f docker-compose.yml down
             docker compose -f docker-compose.yml up -d
+            docker system prune -f

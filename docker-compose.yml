@@ -61,6 +61,8 @@ services:
       cache_from:
         - type=local,src=/tmp/.buildx-cache/client
     image: imdla/client:latest
+    environment:
+      - DOMAIN=13.124.30.11.sslip.io
     ports:
       - '80:80'
       - '443:443'
